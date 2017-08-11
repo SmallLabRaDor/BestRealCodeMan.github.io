@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-ES6模块化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/20/ES6模块化/" class="article-date">
+  <time datetime="2017-04-20T06:49:04.000Z" itemprop="datePublished">2017-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/20/ES6模块化/">ES6模块化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天说一下ES6的模块化，使用babel进行编译。<br>babel+webpack配置:</p>
+<pre><code>    webpack.config.js的代码如下:
+    module.exports={
+          entry:&apos;./index.js&apos;,//入口文件
+          output:{
+              filename:&apos;build.js&apos;//出口
+          }，
+     module:{
+    loaders：[{
+        test:/\.js$/,
+        loaders:&apos;babel-loader&apos;,
+        exclude:/node_modules/   //排除那些目录
+        }]
+    }
+};
+</code></pre><p>   .babelrc文件的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">		&quot;presets:[[&apos;es2015&apos;]]&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下载相应的模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install-loader babel-core babel-preset-es2015</div></pre></td></tr></table></figure></p>
+<p>webpack -w运行<br>ES6里面模块化的使用方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">模块: 定义(导出) 和 引入(导入)</div><div class="line">以下例子,导出模块放在 mod.js里面</div><div class="line">以下例子,导入模块放在 index.js 里面</div></pre></td></tr></table></figure></p>
+<p>####第一种书写方式<br>mod.js代码(一个一个导出)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">export let a=12; //到处普通值</div><div class="line">	export let b=5;</div><div class="line">	exporrt let json=&#123;</div><div class="line">		a,b</div><div class="line">	&#125;;</div><div class="line">	export let show=function()&#123;//导出函数</div><div class="line">		reutrn &apos;hello&apos;</div><div class="line">	&#125;；</div><div class="line">	export class Person&#123; //导出类(es6面向对象)</div><div class="line">		constructor()&#123;</div><div class="line">			this.name=&apos;123&apos;;</div><div class="line">		&#125;</div><div class="line">		showName()&#123;</div><div class="line">			reutrn this.name;</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>index.js代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import &#123;</div><div class="line">		a,b,json,show,Person</div><div class="line">	&#125; from &apos;./mod&apos;</div><div class="line">	console,log(a,b,json,show,Person);</div></pre></td></tr></table></figure></p>
+<p>####第二种书写方式<br>mod.js代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let [a,b,c]=[12,5,1];</div><div class="line">	export&#123;</div><div class="line">		a,b,c as  cc//as是别名，使用的时候只能用别名</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>index.js代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import&#123;</div><div class="line">		a,b,cc //cc是导出的，as别名</div><div class="line">	&#125; from &apos;./mod&apos;</div><div class="line">	console.log(a,b,cc);</div></pre></td></tr></table></figure></p>
+<p>####第三种 default方式<br>default方式的优点，import无需知道变量名，就可以直接使用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/20/ES6模块化/" data-id="cj2fn28h40001rwpchf5ibfo1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/20/hello-world/" class="article-date">
+  <time datetime="2017-04-20T02:03:01.162Z" itemprop="datePublished">2017-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/20/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/20/hello-world/" data-id="cj2fn28h40000rwpcstobwcsh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-堆排序算法思想" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/10/堆排序算法思想/" class="article-date">
+  <time datetime="2017-04-10T15:01:22.000Z" itemprop="datePublished">2017-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/10/堆排序算法思想/">堆排序算法思想</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前两天看了看堆排序算法，啃了半天的书，最后搞明白了堆排序算法，今天有时间给大家说说这个堆排序算法。<br>首先讲一下算法的定义吧！<br><strong><strong>算法</strong></strong>：<strong>解题方案的准确完整的描述，是解决问题的一系列清晰的指令，用系统的方法去描述解决问题的策略机制</strong><br>   <small>上面是一段比较官方用词的解释，我用自己简单点的话说就是算法就是用来解决问题的清晰的命令</small></p>
+<hr>
+<p>说完算法的定义我们还得说一下有关于算法的基础的知识点吧！<br><strong><strong>树(tree):</strong></strong>是一种抽象数据类型,用来模拟具有树状结构性质的数据集合。它是由n（n&gt;=1）个有限节点组成一个具有层次关系的集合把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶是朝下的。<br>特点：<br>  <li><small>每个节点有零个或多个子节点；</small></li><br>  <li>没有父节点的节点称为根节点；</li><br>  <li>每一个非根节点有且只有一个父节点；</li><br>  <li>除了根节点外，每个子节点可以分为多个不相交的子树；</li><br>除了上面的这些还有一些比如说<strong>树的度</strong>，<strong>节点的度</strong>，<strong>父节点，子节点，兄弟节点等等</strong>这些我就不一一详细的介绍了，给大家一个网址上面对各个术语的解释。<br><a href="https://zh.wikipedia.org/wiki/%E6%A0%91_(%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" target="_blank" rel="external">https://zh.wikipedia.org/wiki/%E6%A0%91_(%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84</a>)</p>
+<hr>
+<p>终于到了堆排序算法了！<br><strong><strong>堆排序：</strong></strong>简单的讲就是利用对的性质进行的一种选择排序。<br>堆分为大顶堆和小顶堆其中大顶堆满足条件：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4627532-dc6f52063b3c2d94.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>小顶堆满足条件：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4627532-84c97876c3db60ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<hr>
+<p>基本思想：(大顶堆)</p>
+<blockquote>
+<p>1.将待排序的关键字序列（R1,R2,…Rn）构建大顶堆，此堆为初始的无序区.</p>
+<p>2.将堆顶元素R[1]与最后一个元素R[n]交换，此时得到新的无序区<br>  (R1,R2,……Rn-1)和新的有序区(Rn),且满足R[1,2…n-1]&lt;=R[n];</p>
+<p>3.由于交换后新的堆顶R[1]可能违反堆的性质，因此需要对当前无序区(R1,R2,……Rn-1)调整为新堆，然后再次将R[1]与无序区最后一个元素交换，得到新的无序区(R1,R2….Rn-2)和新的有序区(Rn-1,Rn)。不断重复此过程直到有序区的元素个数为n-1，则整个排序过程完成。</p>
+</blockquote>
+<hr>
+<p><strong>例：</strong>对数组a排序：a[]={16,7,3,20,17,8}</p>
+<p>  （1）构造树<br><img src="http://upload-images.jianshu.io/upload_images/4627532-a12abb8beeb332f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>（2）构造初始堆</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4627532-3f5722ef73ca314c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>和上图比较就会知道，我们首先比较子节点20&gt;17&gt;7</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4627532-7251c322fd55817b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>同上8&gt;3<br><img src="http://upload-images.jianshu.io/upload_images/4627532-e237710c98b40df9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>然后比较20,17,8，按照大顶堆得性质，最大的在最上面然后把最大的放在最后面，和最后一个换位置（Rn）如下图：<br><img src="http://upload-images.jianshu.io/upload_images/4627532-e0b8c6d5e6704cf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>然后在进行排序，17&gt;8&gt;3<br><img src="http://upload-images.jianshu.io/upload_images/4627532-f56efc7ea15c56fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>继续如上各个节点排序<br><img src="http://upload-images.jianshu.io/upload_images/4627532-8992cf223e46e506.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4627532-f4b329d92c75dae5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4627532-1a7451517dfe35e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4627532-4fd98dc5f8c9830b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4627532-d126c620bd01190b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4627532-75a745804dfc8e96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4627532-f9ed8752c607af6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/4627532-be8f927083f056ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>最后这样就排完序了<br><img src="http://upload-images.jianshu.io/upload_images/4627532-ed322254c0c5246e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/10/堆排序算法思想/" data-id="cj2fn28hk0004rwpcrc8m9d6q" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-my-new-Post" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/20/my-new-Post/" class="article-date">
+  <time datetime="2017-03-20T15:18:43.000Z" itemprop="datePublished">2017-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/20/my-new-Post/">MYSQL数据库的常用操作语句</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>无论是<strong>MYSQL</strong>可视化工具，还是MySQL Command line Client都适用以下的语句，包括增加，删除，修改，查找增加外键等。</p>
+<p>##一，数据库操作</p>
+<p>#####(1)查看数据库</p>
+<pre><code>show databases;   //可视化工具和所谓的“黑框”都能使用    
+  注：会显示出你所创建的所有数据库
+</code></pre><p>#####(2)创建数据库</p>
+<pre><code>create database javatest(数据库名，按照自己的需求自己定);//同上
+注:数据库名一般不采用中文，其实中文也可以，但是采用中文会出现一些不必要的麻烦，比如乱码等等之类的。
+</code></pre><p>#####(3)使用数据库</p>
+<pre><code>use javatest（数据库名）;            //同上
+ 注:如果数据库很多（在可视化工具中）,或者是在MySQL Command line Client中都要用到  
+use xxx（数据库名）来强调自己要使用哪个数据库.
+</code></pre><p>#####(4)查看当前使用的数据库<br>        select database();            //同上<br>        注:会显示出当前自己使用的数据库</p>
+<p>#####(5)删除数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drop database javatest;(数据库名)</div></pre></td></tr></table></figure></p>
+<p>##二、表操作</p>
+<p>####（1）在当前数据库下查看表</p>
+<pre><code>show tables;
+注：显示当前使用的数据库里的所有表
+</code></pre><p>####（２）建表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  create table 表名（</div><div class="line">  id int primary key auto_increment  一般第一列是id设主键,</div><div class="line">  按照自己的需求定其他列类型可以是char或者是varchar;</div><div class="line">  varchar会比char 更节省空间而且后面必须是数字，例:varchar（20）</div><div class="line">）</div><div class="line">```  </div><div class="line">如下图所示图例：    </div><div class="line"> ![image.png](http://upload-images.jianshu.io/upload_images/4627532-0116e22c73072607.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</div><div class="line"></div><div class="line"></div><div class="line">![image.png](http://upload-images.jianshu.io/upload_images/4627532-6b00fa98de9ce2ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</div><div class="line"></div><div class="line">####（3）外键关联</div></pre></td></tr></table></figure></p>
+<p>alter table (表名) foreign key(c_id) references t_class(c_id);<br>注：alter table (表名)可有也可没有但是为了避免出错一般都加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">####（4）默认值语法</div></pre></td></tr></table></figure></p>
+<p>表中的列 default 默认值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">如下图所示</div><div class="line">![image.png](http://upload-images.jianshu.io/upload_images/4627532-8e07e7c59350ca0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</div><div class="line"></div><div class="line">三，数据操作</div><div class="line"></div><div class="line">####1,插入数据</div></pre></td></tr></table></figure></p>
+<p>INSERT INTO 表名 VALUES(‘数据1’,’数据2’,’数据3’);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">####2,修改数据</div></pre></td></tr></table></figure></p>
+<p>UPDATE  表名  SET  列=’ 要修改的内容’  WHERE id=’?(通过id找得到的数据)’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">如下图所示：</div><div class="line">    第一个c_class是表名，第二个c_class是要修改的列，后面的id是通过id找到那条需要修改的数据</div><div class="line">![image.png](http://upload-images.jianshu.io/upload_images/4627532-33e1c1e62bbea1c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</div><div class="line"></div><div class="line">####3,删除数据</div></pre></td></tr></table></figure></p>
+<pre><code>DELETE FROM 表名 WHERE id=&apos;要删除数据的id&apos;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">####4,查询数据</div></pre></td></tr></table></figure>
+<p>  SELECT <em> FROM 表名 WHERE 条件=’内容’<br>例：<br>  select </em> from c_class where name=’张三’<br>注：查询语句还有很多，这里我只说到了最基本的，其他的还需要各位去自己发掘。<br>```</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/20/my-new-Post/" data-id="cj2fn28h40002rwpctj17mh1d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/04/20/ES6模块化/">ES6模块化</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/10/堆排序算法思想/">堆排序算法思想</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/my-new-Post/">MYSQL数据库的常用操作语句</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

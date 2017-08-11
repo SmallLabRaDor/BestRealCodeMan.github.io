@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MYSQL数据库的常用操作语句 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="无论是MYSQL可视化工具，还是MySQL Command line Client都适用以下的语句，包括增加，删除，修改，查找增加外键等。
+##一，数据库操作
+#####(1)查看数据库
+show databases;   //可视化工具和所谓的“黑框”都能使用    
+  注：会显示出你所创建的所有数据库
+#####(2)创建数据库
+create database javatest(数据库名，按">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MYSQL数据库的常用操作语句">
+<meta property="og:url" content="http://yoursite.com/2017/03/20/my-new-Post/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="无论是MYSQL可视化工具，还是MySQL Command line Client都适用以下的语句，包括增加，删除，修改，查找增加外键等。
+##一，数据库操作
+#####(1)查看数据库
+show databases;   //可视化工具和所谓的“黑框”都能使用    
+  注：会显示出你所创建的所有数据库
+#####(2)创建数据库
+create database javatest(数据库名，按">
+<meta property="og:updated_time" content="2017-04-11T15:01:25.733Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MYSQL数据库的常用操作语句">
+<meta name="twitter:description" content="无论是MYSQL可视化工具，还是MySQL Command line Client都适用以下的语句，包括增加，删除，修改，查找增加外键等。
+##一，数据库操作
+#####(1)查看数据库
+show databases;   //可视化工具和所谓的“黑框”都能使用    
+  注：会显示出你所创建的所有数据库
+#####(2)创建数据库
+create database javatest(数据库名，按">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-my-new-Post" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/20/my-new-Post/" class="article-date">
+  <time datetime="2017-03-20T15:18:43.000Z" itemprop="datePublished">2017-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MYSQL数据库的常用操作语句
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>无论是<strong>MYSQL</strong>可视化工具，还是MySQL Command line Client都适用以下的语句，包括增加，删除，修改，查找增加外键等。</p>
+<p>##一，数据库操作</p>
+<p>#####(1)查看数据库</p>
+<pre><code>show databases;   //可视化工具和所谓的“黑框”都能使用    
+  注：会显示出你所创建的所有数据库
+</code></pre><p>#####(2)创建数据库</p>
+<pre><code>create database javatest(数据库名，按照自己的需求自己定);//同上
+注:数据库名一般不采用中文，其实中文也可以，但是采用中文会出现一些不必要的麻烦，比如乱码等等之类的。
+</code></pre><p>#####(3)使用数据库</p>
+<pre><code>use javatest（数据库名）;            //同上
+ 注:如果数据库很多（在可视化工具中）,或者是在MySQL Command line Client中都要用到  
+use xxx（数据库名）来强调自己要使用哪个数据库.
+</code></pre><p>#####(4)查看当前使用的数据库<br>        select database();            //同上<br>        注:会显示出当前自己使用的数据库</p>
+<p>#####(5)删除数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">drop database javatest;(数据库名)</div></pre></td></tr></table></figure></p>
+<p>##二、表操作</p>
+<p>####（1）在当前数据库下查看表</p>
+<pre><code>show tables;
+注：显示当前使用的数据库里的所有表
+</code></pre><p>####（２）建表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  create table 表名（</div><div class="line">  id int primary key auto_increment  一般第一列是id设主键,</div><div class="line">  按照自己的需求定其他列类型可以是char或者是varchar;</div><div class="line">  varchar会比char 更节省空间而且后面必须是数字，例:varchar（20）</div><div class="line">）</div><div class="line">```  </div><div class="line">如下图所示图例：    </div><div class="line"> ![image.png](http://upload-images.jianshu.io/upload_images/4627532-0116e22c73072607.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</div><div class="line"></div><div class="line"></div><div class="line">![image.png](http://upload-images.jianshu.io/upload_images/4627532-6b00fa98de9ce2ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</div><div class="line"></div><div class="line">####（3）外键关联</div></pre></td></tr></table></figure></p>
+<p>alter table (表名) foreign key(c_id) references t_class(c_id);<br>注：alter table (表名)可有也可没有但是为了避免出错一般都加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">####（4）默认值语法</div></pre></td></tr></table></figure></p>
+<p>表中的列 default 默认值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">如下图所示</div><div class="line">![image.png](http://upload-images.jianshu.io/upload_images/4627532-8e07e7c59350ca0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</div><div class="line"></div><div class="line">三，数据操作</div><div class="line"></div><div class="line">####1,插入数据</div></pre></td></tr></table></figure></p>
+<p>INSERT INTO 表名 VALUES(‘数据1’,’数据2’,’数据3’);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">####2,修改数据</div></pre></td></tr></table></figure></p>
+<p>UPDATE  表名  SET  列=’ 要修改的内容’  WHERE id=’?(通过id找得到的数据)’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">如下图所示：</div><div class="line">    第一个c_class是表名，第二个c_class是要修改的列，后面的id是通过id找到那条需要修改的数据</div><div class="line">![image.png](http://upload-images.jianshu.io/upload_images/4627532-33e1c1e62bbea1c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</div><div class="line"></div><div class="line">####3,删除数据</div></pre></td></tr></table></figure></p>
+<pre><code>DELETE FROM 表名 WHERE id=&apos;要删除数据的id&apos;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">####4,查询数据</div></pre></td></tr></table></figure>
+<p>  SELECT <em> FROM 表名 WHERE 条件=’内容’<br>例：<br>  select </em> from c_class where name=’张三’<br>注：查询语句还有很多，这里我只说到了最基本的，其他的还需要各位去自己发掘。<br>```</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/20/my-new-Post/" data-id="cj2fn28h40002rwpctj17mh1d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/10/堆排序算法思想/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          堆排序算法思想
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/04/20/ES6模块化/">ES6模块化</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/10/堆排序算法思想/">堆排序算法思想</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/20/my-new-Post/">MYSQL数据库的常用操作语句</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
